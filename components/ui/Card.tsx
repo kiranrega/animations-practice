@@ -11,11 +11,28 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
 export default function Card() {
+    const [open, setOpen] = useState(true);
   return (
-    <div
+    <AnimatePresence>
+    {open && <motion.div
+      initial={{
+        opacity: 1,
+        scale: 1.05,
+        filter: "blur(0px)",
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0.98,
+        filter: "blur(10px)",
+      }}
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
       className={cn(
         "w-72 min-h-[26rem] h-[28rem] rounded-xl",
         "shadow-[0_1px_1px_rgba(0,0,0,.05),_0_4px_6px_rgba(34,42,53,0.04),_0_24px_68px_rgba(47,48,55,0.05),_0_2px_3px_rgba(0,0,0,0.04)]",
@@ -24,7 +41,7 @@ export default function Card() {
     >
       <h2 className="font-bold text-[10px]">Acceritiny</h2>
       <p className="text-neutral-600 text-[10px]">
-        accecetinity beautiful snippets
+        accerinitnity beautiful snippets
       </p>
       <div className="flex justify-center items-center">
         <button
@@ -33,6 +50,7 @@ export default function Card() {
             "shadow-[0_1px_1px_rgba(0,0,0,.05),_0_4px_6px_rgba(34,42,53,0.04),_0_24px_68px_rgba(47,48,55,0.05),_0_2px_3px_rgba(0,0,0,0.04)]",
             "rounded-lg py-1 px-2"
           )}
+          onClick={() => setOpen(!open)}
         >
           <Image
             width={50}
@@ -41,7 +59,7 @@ export default function Card() {
             src="/machine-vision-svgrepo-com.svg"
             alt="logo"
           />
-          Acceritiny
+          Accerinitnity
           <X className="h-3 w-3 text-neutral-500" />
         </button>
       </div>
@@ -76,10 +94,10 @@ export default function Card() {
             </div>
             <div className="flex flex-col">
               <p className="font-bold text-[8px] text-neutral-600 ">
-                Acceritiny UI Components
+                accerinitnity UI Components
               </p>
               <p className="text-[8px] text-neutral-400 mt-1">
-                A collection of UI Compoenents
+                A collection of UI Compoenents with animations
               </p>
             </div>
           </div>
@@ -142,6 +160,7 @@ export default function Card() {
           </div>
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div> }
+    </ AnimatePresence>
   );
 }
