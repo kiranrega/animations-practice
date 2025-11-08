@@ -4,7 +4,7 @@
 
 import features from "@/constants/fetaturesData";
 import { Feature } from "@/constants/fetaturesData";
-import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef, useState } from "react";
   const backendGroundColors = ["#03045e", "#023047", "#386641"]
 
@@ -40,7 +40,7 @@ const FeatureCard = ({ feature }: { feature: Feature }) => {
     offset: ["start end", "end start"],
   });
 
-  const transformElmenet = useTransform(scrollYProgress, [0, 1], [-200, 300]);
+  const transformElmenet = useSpring (useTransform(scrollYProgress, [0, 1], [-200, 300]));
   const opacity = useTransform(scrollYProgress, [0.5, 1], [1, 0.5]);
   const scale = useTransform(scrollYProgress, [0.5, 1], [1, 0.8]);
   const blur = useTransform(scrollYProgress, [0.5, 1], [0, 10]);
