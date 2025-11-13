@@ -7,6 +7,8 @@ import TiltCard from "@/components/ui/TiltCard";
 import LayoutCards from "@/components/ui/LayoutCards";
 import { Navbar } from "@/components/ui/Navbar";
 import { useState } from "react";
+import AnimatedText from "@/components/ui/AnimatedText";
+import AnimationSequences from "@/components/ui/AnimationSquences";
 
 export default function Page() {
   // List of components available in the sidebar
@@ -17,6 +19,8 @@ export default function Page() {
     { key: "ParlalexCard", title: "ParlalexCard", node: <ParlalexCard /> },
     { key: "TiltCard", title: "TiltCard", node: <TiltCard /> },
     { key: "LayoutCards", title: "LayoutCards", node: <LayoutCards /> },
+    { key: "AnimatedText", title: "AnimatedText", node: <AnimatedText text="Welcome to Motion Practice Learning daily Motion with Next.js!" /> },
+    { key: "AnimationSequences", title: "AnimationSequences", node: <AnimationSequences /> },
   ];
 
   const [selectedKey, setSelectedKey] = useState<string>(componentsList[0].key);
