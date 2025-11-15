@@ -9,6 +9,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { useState } from "react";
 import AnimatedText from "@/components/ui/AnimatedText";
 import AnimationSequences from "@/components/ui/AnimationSquences";
+import ScrollLinked from "@/components/ui/PropagationCard";
 
 export default function Page() {
   // List of components available in the sidebar
@@ -21,9 +22,10 @@ export default function Page() {
     { key: "LayoutCards", title: "LayoutCards", node: <LayoutCards /> },
     { key: "AnimatedText", title: "AnimatedText", node: <AnimatedText text="Welcome to Motion Practice Learning daily Motion with Next.js!" /> },
     { key: "AnimationSequences", title: "AnimationSequences", node: <AnimationSequences /> },
+    {key:"ScrollCard", title: "ScrollCard", node: <ScrollLinked /> },
   ];
 
-  const [selectedKey, setSelectedKey] = useState<string>(componentsList[0].key);
+  const [selectedKey, setSelectedKey] = useState<string>(componentsList[0].key ?? "");
 
   const selected = componentsList.find((c) => c.key === selectedKey) ?? componentsList[0];
 
@@ -33,12 +35,12 @@ export default function Page() {
       <aside className="w-64 bg-white border-r border-neutral-200 p-4">
         <h3 className="text-sm font-semibold mb-3">Components</h3>
         <ul className="flex flex-col gap-2">
-          {componentsList.map((c) => {
+          {componentsList && componentsList.map((c) => {
             const active = c.key === selectedKey;
             return (
               <li key={c.key}>
                 <button
-                  onClick={() => setSelectedKey(c.key)}
+                  onClick={() => setSelectedKey(c.key?? "")}
                   className={cn(
                     "w-full text-left px-3 py-2 rounded-md text-sm transition-colors",
                     active ? "bg-neutral-900 text-white" : "text-neutral-700 hover:bg-neutral-100"
